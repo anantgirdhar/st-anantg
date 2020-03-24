@@ -191,6 +191,10 @@ ResourcePref resources[] = {
         { "chscale",      FLOAT,   &chscale },
 };
 
+/* Internal keyboard shortcuts. */
+#define MODKEY Mod1Mask
+#define TERMMOD (ControlMask|ShiftMask)
+
 /*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
@@ -201,9 +205,8 @@ static MouseShortcut mshortcuts[] = {
     { Button5,              XK_ANY_MOD,     "\005" },
 };
 
-/* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (ControlMask|ShiftMask)
+static char *openurlcmd[] = { "/bin/sh", "-c", "st_copy_url follow", "externalpipe", NULL};
+static char *copyurlcmd[] = { "/bin/sh", "-c", "st_copy_url", "externalpipe", NULL};
 
 static Shortcut shortcuts[] = {
     /* mask                 keysym          function        argument */
@@ -223,6 +226,8 @@ static Shortcut shortcuts[] = {
     { MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
     { ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
     { TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+    { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd} },
+    { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd} },
 };
 
 /*

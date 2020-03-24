@@ -1,0 +1,33 @@
+#!/bin/bash
+
+tmpfile=$(mktemp /tmp/st-screen-output.XXXXXX)
+trap 'rm "$tmpfile"' 0 1 15
+sed -n "w $tmpfile"
+
+if [ "$1" = "copy" ] || [ -z "$1" ]; then
+    action="Copy"
+elif [ "$1" = "follow" ]; then
+    action="Follow"
+else
+    exit -1
+fi
+
+url=$(cat $tmpfile |\
+    sed 's/.*|//g' |\
+    tr -d '\n' |\
+    tr '\t' '  ' |\
+    grep -aEo '((http|https|ftp|gopher|mailto)[.:]|www.)[^ >"]*' |\
+    uniq |\
+    dmenu_nice -i -l 10 -p "$action url: ")
+
+[ -z "$url" ] && exit 0
+
+if [ "$action" = "Follow" ]; then
+    $BROWSER $url
+elif [ "$action" = "Copy" ]; then
+    echo $url | tr -d '\n' | xclip -selection clipboard
+    notify-send -t 2000 "Copied link" "$url"
+else
+    notify-send "st_copy_url" "Something incorrect happened"
+fi
+
