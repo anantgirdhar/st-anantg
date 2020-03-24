@@ -207,6 +207,7 @@ static MouseShortcut mshortcuts[] = {
 
 static char *openurlcmd[] = { "/bin/sh", "-c", "st_copy_url follow", "externalpipe", NULL};
 static char *copyurlcmd[] = { "/bin/sh", "-c", "st_copy_url", "externalpipe", NULL};
+static char *copyoutputcmd[] = { "/bin/sh", "-c", "st_copy_output", "externalpipe", NULL};
 
 static Shortcut shortcuts[] = {
     /* mask                 keysym          function        argument */
@@ -228,6 +229,7 @@ static Shortcut shortcuts[] = {
     { TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
     { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd} },
     { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd} },
+    { MODKEY,               XK_o,           externalpipe,   {.v = copyoutputcmd} },
 };
 
 /*
