@@ -18,7 +18,7 @@ url=$(cat $tmpfile |\
     tr '\t' '  ' |\
     grep -aEo '((http|https|ftp|gopher|mailto)[.:]|www.)[^ >"]*' |\
     uniq |\
-    dmenu_nice -i -l 10 -p "$action url: ")
+    dmenu -i -l 10 -p "$action url: ")
 
 [ -z "$url" ] && exit 0
 
