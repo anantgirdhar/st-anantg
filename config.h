@@ -10,7 +10,7 @@ static char *font = "Inconsolata:pixelsize=16:antialias=true:autohint=true";
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
-    "Symbola:pixelsize=16:antialias=true:autohint=true",
+    "Symbola:pixelsize=18:antialias=true:autohint=true",
     "Noto Serif CJK TC:pixelsize=16:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=14:antialias=true:autohint=true",
 };
@@ -92,7 +92,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -232,6 +232,8 @@ static Shortcut shortcuts[] = {
     { TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
     { MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
     { MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
+    { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
+    { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
     { MODKEY,               XK_k,           kscrollup,      {.i =  1} },
     { MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
     { ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
